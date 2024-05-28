@@ -18,6 +18,10 @@ def commandLine():
         vieleck(eingabe)
     elif eingabe[0] == "exit":
         exit(0)
+    elif eingabe[0] == "clear_screen":
+        clear()
+    elif eingabe[0] == "reset":
+        clearScreen() 
     else:
         print("Unbekannter Befehl. Gebe help ein für mehr Infos")
 
@@ -32,7 +36,8 @@ def innenwinkel(n):
     return(alpha)
 
 def printHelp():
-    print("")
+    print("
+          ")
     commandLine()
     
 def vieleck(eingabe):
