@@ -1,19 +1,16 @@
-from gpanel import *
+from gturtle import *
 from math import *
 
-siz=15
-makeGPanel(-siz,siz,-siz,siz)
-
+makeTurtle()
 
 def commandLine():
-    #eingabe = input('')
-    eingabe = "vieleck r=2 fill=true n=4"
+    eingabe = input('')
+    #eingabe = "vieleck r=20 n=6"
     
     eingabe = eingabe.split()
     
     if eingabe[0] == "help":
-        #printHelp()
-        printHelp() 
+        printHelp(eingabe) 
     elif eingabe[0] == "vieleck":
         vieleck(eingabe)
     elif eingabe[0] == "exit":
@@ -35,15 +32,30 @@ def innenwinkel(n):
     alpha=180-360/n
     return(alpha)
 
-def printHelp():
-    print("
-          ")
-    commandLine()
+def printHelp(eingabe):
+    if len(eingabe) == 1:
+        print("Das Array ist leer und dann wäre hier die gennerelle hilfe")
+        return()#return to commandLine()
+    else:
+        if eingabe[1] == "help":
+            print("help") 
+        elif eingabe[1] == "vieleck":
+            print("vieleck") 
+        elif eingabe[1] == "exit":
+            print("exit")
+        elif eingabe[1] == "clear_screen":
+            print("clear_screen")
+        elif eingabe[1] == "reset":
+            print("reset") 
+        else:
+            print("Unbekannter Befehl. Gebe help ein für mehr Infos")
+    return()#return to commandLine()
     
 def vieleck(eingabe):
-    r=0
+    r=3
     n=3
-    theta=360/n
+    s=80
+    startPos=getPos()
     
     for e in eingabe:
         par = e.split("=")
@@ -51,6 +63,25 @@ def vieleck(eingabe):
             r=int(par[1])
         elif par[0] == "n":
             n=int(par[1])
-        print(innenwinkel(n))
         
+    alpha=innenwinkel(n)
+    pu()
+    fd(r)
+    pd()
+    rt(alpha)
+    fd(s/2)
+    rt(alpha)
+    repeat n-1:
+        fd(s)
+        rt(alpha)
+    fd(s/2)
+
+
+
+
+
+
+
+
+
 commandLine()
