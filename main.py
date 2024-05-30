@@ -6,16 +6,16 @@ makeTurtle()
 def commandLine():
     eingabe=getEingabe()
     while eingabe[0] != "exit":
-        if eingabe[0] == "help":
+        if eingabe[0] == "help" or "h" or "he":
             printHelp(eingabe) 
-        elif eingabe[0] == "vieleck":
+        elif eingabe[0] == "vieleck" or "vi":
             vieleck(eingabe)
-        elif eingabe[0] == "clear":
+        elif eingabe[0] == "clear" or "cl":
             clear()
-        elif eingabe[0] == "reset":
+        elif eingabe[0] == "reset" or "re":
             clearScreen()
-        elif eingabe[0] == "set":
-            set(eingabe) 
+        elif eingabe[0] == "set" or "se":
+            set(eingabe)
         else:
             print("Unbekannter Befehl. Gebe help ein für mehr Infos")
         eingabe=getEingabe()
@@ -25,6 +25,7 @@ def getEingabe():
     eingabe = input("")
     while eingabe=="":
         eingabe = input("")
+        print("Benutze den help Befehl um mehrzuerfahren!")
     #eingabe = "vieleck r=100 n=5"
     eingabe = eingabe.split()
     return(eingabe)
@@ -41,7 +42,7 @@ def innenwinkel(n):
 
 def printHelp(eingabe):
     if len(eingabe) == 1:
-        print("Möglich Befehle: help, vieleck, exit, clear, reset, set. Für mehr Infos schreibe z.B. help reset um mehr Infos zu reset befehl zubekommen.")
+        print("Möglich Befehle: help, vieleck, exit, clear, reset, set. Für mehr Infos schreibe z.B. help reset um mehr Infos zu reset befehl zubekommen.\n Tipp: Du kannst auch immer nur die ersten 2 Buchstaben von einen Command nehmen.")
         return()#return to commandLine()
     else:
         if eingabe[1] == "help":
@@ -55,7 +56,7 @@ def printHelp(eingabe):
         elif eingabe[1] == "reset":
             print("Löscht alles was gezeichnet wurde und set die Turtle wider auf die Startposition.") 
         elif eingabe[1] == "set":
-            print("Set werte der Turtle. Position setzen: set pos x y (x und y sind hier variabel und müssen besetzt werden.) set angle α  (α ist hier eine variabel und must besetzt werden.)") 
+            print("Set werte der Turtle. Position setzen: set pos x y (x und y sind hier variabel und müssen besetzt werden.),\n set angle α  (α ist hier eine variabel und must besetzt werden.)") 
         else:
             print("Unbekannter Befehl. Gebe help ein für mehr Infos")
     return()#return to commandLine()
@@ -94,9 +95,10 @@ def set(eingabe):
         print("Ungültiger Befehl. Sehe help")
         return()
     else:
-        if eingabe[1] == "pos": #out of range bug
+        #out of range bug on whole if statement
+        if eingabe[1] == "pos": 
             setPos(int(eingabe[2]), int(eingabe[3])) 
-        elif eingabe[1] == "angle": #out of range bug
+        elif eingabe[1] == "angle":
             setHeading(int(eingabe[2]))
     return()
 
