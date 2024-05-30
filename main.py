@@ -4,23 +4,26 @@ from math import *
 makeTurtle()
 
 def commandLine():
-    eingabe = input('')
+    eingabe=getEingabe()
+    while eingabe[0] != "exit":
+        eingabe=getEingabe()
+        if eingabe[0] == "help":
+            printHelp(eingabe) 
+        elif eingabe[0] == "vieleck":
+            vieleck(eingabe)
+        elif eingabe[0] == "clear_screen":
+            clear()
+        elif eingabe[0] == "reset":
+            clearScreen() 
+        else:
+            print("Unbekannter Befehl. Gebe help ein für mehr Infos")
+    exit("Programm beendet...")
+
+def getEingabe():
+    eingabe = input("")
     #eingabe = "vieleck r=20 n=6"
-    
     eingabe = eingabe.split()
-    
-    if eingabe[0] == "help":
-        printHelp(eingabe) 
-    elif eingabe[0] == "vieleck":
-        vieleck(eingabe)
-    elif eingabe[0] == "exit":
-        exit(0)
-    elif eingabe[0] == "clear_screen":
-        clear()
-    elif eingabe[0] == "reset":
-        clearScreen() 
-    else:
-        print("Unbekannter Befehl. Gebe help ein für mehr Infos")
+    return(eingabe)
 
 def polarToXY(r,theta):
     theta=theta/360*2*pi
@@ -33,12 +36,12 @@ def innenwinkel(n):
     return(alpha)
 
 def printHelp(eingabe):
-    if len(eingabe) == 1:
-        print("Das Array ist leer und dann wäre hier die gennerelle hilfe")
+    if len(eingabe) == 1: #Bug: es wird nicht geprintet
+        print("Möglich befehle: help, vieleck, exit, clear_screen, reset. Für mehr Infos schreibe z.B. help reset um mehr Infos zu reset befehl zubekommen")
         return()#return to commandLine()
     else:
         if eingabe[1] == "help":
-            print("help") 
+            print("help druck die Hilfe.") 
         elif eingabe[1] == "vieleck":
             print("vieleck") 
         elif eingabe[1] == "exit":
@@ -54,7 +57,7 @@ def printHelp(eingabe):
 def vieleck(eingabe):
     r=3
     n=3
-    s=80
+    s=3
     startPos=getPos()
     
     for e in eingabe:
@@ -63,7 +66,7 @@ def vieleck(eingabe):
             r=int(par[1])
         elif par[0] == "n":
             n=int(par[1])
-        
+    s=2*r*sin(pi/n)
     alpha=innenwinkel(n)
     pu()
     fd(r)
