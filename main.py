@@ -5,27 +5,29 @@ makeTurtle()
 
 def commandLine():
     eingabe=getEingabe()
-    while eingabe[0] != "exit":
-        if eingabe[0] == "help" or "h" or "he":
+    e0 = eingabe[0]
+    while not(e0 == "exit" or e0 == "ex" ): 
+        if e0 == "help" or e0 == "h" or e0 == "he":
             printHelp(eingabe) 
-        elif eingabe[0] == "vieleck" or "vi":
+        elif e0 == "vieleck" or e0 == "vi":
             vieleck(eingabe)
-        elif eingabe[0] == "clear" or "cl":
+        elif e0 == "clear" or e0 == "cl":
             clear()
-        elif eingabe[0] == "reset" or "re":
+        elif e0 == "reset" or e0 == "re":
             clearScreen()
-        elif eingabe[0] == "set" or "se":
+        elif e0 == "set" or e0 == "se":
             set(eingabe)
         else:
-            print("Unbekannter Befehl. Gebe help ein für mehr Infos")
+            print("Unbekannter Befehl. Gebe help ein für mehr Infos:", eingabe)
         eingabe=getEingabe()
+        e0 = eingabe[0]
     exit("Programm beendet...")
 
 def getEingabe():
     eingabe = input("")
     while eingabe=="":
         eingabe = input("")
-        print("Benutze den help Befehl um mehrzuerfahren!")
+        print("Benutze den help Befehl um mehr zu erfahren!")
     #eingabe = "vieleck r=100 n=5"
     eingabe = eingabe.split()
     return(eingabe)
@@ -62,8 +64,8 @@ def printHelp(eingabe):
     return()#return to commandLine()
     
 def vieleck(eingabe):
-    r=3
-    n=3
+    r=100
+    n=6
     s=3
     startPos=getPos()
     startAngel=heading()
@@ -95,14 +97,21 @@ def set(eingabe):
         print("Ungültiger Befehl. Sehe help")
         return()
     else:
-        #out of range bug on whole if statement
-        if eingabe[1] == "pos": 
-            setPos(int(eingabe[2]), int(eingabe[3])) 
+        if eingabe[1] == "pos":
+            if len(eingabe) == 4:
+                setPos(int(eingabe[2]), int(eingabe[3])) 
+            else:
+                print("Ungültiger Befehl! Du musst 2 Koordinaten eingeben x y.")
+                return()
         elif eingabe[1] == "angle":
-            setHeading(int(eingabe[2]))
+            if len(eingabe) == 3:
+                setHeading(int(eingabe[2]))
+            else:
+                print("Ungültiger Befehl! Du musst einen Winkel eingeben.")
+                return()
     return()
 
-
+hideTurtle()
 
 repeat 2: #Damit das Fenster nicht den output überlappt.
     print("\n")
