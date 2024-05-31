@@ -73,10 +73,10 @@ def vieleck(eingabe):
     for e in eingabe:
         par = e.split("=")
         if par[0] == "r":
-            r=int(par[1])
+            r=abs(int(par[1]))
         elif par[0] == "n":
-            n=int(par[1])
-    s=2*r*sin(pi/n)
+            n=abs(int(par[1])) #abs damit der int postiv ist
+    s=2*r*sin(pi/n) #formle für kantenlänge
     alpha=innenwinkel(n)
     pu()
     fd(r)
@@ -111,7 +111,7 @@ def set(eingabe):
                 return()
     return()
 
-hideTurtle()
+# hideTurtle()
 
 repeat 2: #Damit das Fenster nicht den output überlappt.
     print("\n")
