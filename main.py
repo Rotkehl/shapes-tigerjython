@@ -68,7 +68,7 @@ def vieleck(eingabe):
     n=6
     s=3
     startPos=getPos()
-    startAngel=heading()
+    startAngle=heading()
 
     for e in eingabe:
         par = e.split("=")
@@ -89,7 +89,7 @@ def vieleck(eingabe):
         rt(alpha)
     fd(s/2)
     setPos(startPos)
-    setHeading(startAngel)
+    setHeading(startAngle)
     return()
 
 def set(eingabe):
